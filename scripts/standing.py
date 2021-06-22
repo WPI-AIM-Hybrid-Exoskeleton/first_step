@@ -235,16 +235,18 @@ def compare_legs(file):
         left_leg = trial.vicon.get_model_output().get_left_leg()
         right_leg = trial.vicon.get_model_output().get_right_leg()
 
+        count = 0
+        while np.abs(left_leg.hip.angle.x[count] - left_leg.hip.angle.x[count+1]) < 0.01:
+            count+=1
 
+        axs[0].plot(left_leg.hip.moment.z)
+        axs[0].plot(right_leg.hip.moment.z)
 
-        axs[0].plot(left_leg.hip.angle.x)
-        axs[0].plot(right_leg.hip.angle.x)
+        axs[1].plot(left_leg.knee.moment.z)
+        axs[1].plot(right_leg.knee.moment.z)
 
-        axs[1].plot(left_leg.knee.angle.x)
-        axs[1].plot(right_leg.knee.angle.x)
-
-        axs[2].plot(left_leg.ankle.angle.x)
-        axs[2].plot(right_leg.ankle.angle.x)
+        axs[2].plot(left_leg.ankle.moment.z)
+        axs[2].plot(right_leg.ankle.moment.z)
 
     plt.show()
 

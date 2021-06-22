@@ -115,6 +115,7 @@ def get_moments(files):
         right_leg = trial.vicon.get_model_output().get_right_leg()
 
 
+
         axs[0].grid(True)
         axs[1].grid(True)
         axs[2].grid(True)
@@ -122,7 +123,7 @@ def get_moments(files):
         axs[0].plot(np.array(right_leg.hip.moment.x)/1000)
         axs[1].plot(np.array(right_leg.knee.moment.x)/1000)
         axs[2].plot(np.array(right_leg.ankle.moment.x)/1000)
-
+        print(len(right_leg.ankle.moment.x)/100)
         x1_heel = 437-354
         y1_heel = right_leg.hip.moment.x[x1_heel]/1000
 
@@ -194,5 +195,5 @@ if __name__ == '__main__':
         base = "/home/nathaniel/Documents/first_step/data/05_09_21_nathaniel_walking_0"
         files.append(base + str(i) + ".csv")
 
-    #get_moments(files)
-    get_angles(files)
+    get_moments(files)
+    #get_angles(files)
